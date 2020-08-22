@@ -3,10 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Home from '../pages/home';
 import Navbar from '../components/Navbar';
-
-// styles
-import '../assets/css/magnific-popup.css';
-import '../assets/css/style.css';
+import Footer from '../components/Footer';
 
 export default function UserLayout() {
 	return (
@@ -15,6 +12,7 @@ export default function UserLayout() {
 			<Switch>
 				<Route path="/" exact component={Home} />
 			</Switch>
+			<Footer />
 		</React.Fragment>
 	);
 }

@@ -7,10 +7,11 @@ export default function Navbar() {
 				<div className="navbar-header">
 					<button className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						{' '}
-						<span className="icon icon-bar" /> <span className="icon icon-bar" /> <span className="icon icon-bar" />{' '}
+						<span className="icon icon-bar" /> <span className="icon icon-bar" />{' '}
+						<span className="icon icon-bar" />{' '}
 					</button>
 					<a href="index-2.html" className="navbar-brand">
-						<img src="images/logo-color.png" alt="" />
+						<img src={require('../assets/images/logo-color.png')} alt="" />
 					</a>{' '}
 				</div>
 
