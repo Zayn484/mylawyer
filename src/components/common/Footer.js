@@ -9,7 +9,7 @@ export default function Footer() {
 						<div className="col-xs-12 col-sm-6 col-md-3">
 							<div className="footer-lwf">
 								<h3 className="footer-logo">
-									<img src={require('../assets/images/logo.png')} alt="Lawyer & Attorney" />
+									<img src={require('../../assets/images/logo.png')} alt="Lawyer & Attorney" />
 								</h3>
 								<p>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquet, massa ac

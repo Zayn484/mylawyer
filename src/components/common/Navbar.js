@@ -11,7 +11,7 @@ export default function Navbar() {
 						<span className="icon icon-bar" />{' '}
 					</button>
 					<a href="index-2.html" className="navbar-brand">
-						<img src={require('../assets/images/logo-color.png')} alt="" />
+						<img src={require('../../assets/images/logo-color.png')} alt="" />
 					</a>{' '}
 				</div>
 
