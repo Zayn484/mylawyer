@@ -1,6 +1,9 @@
 import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 
-export default function Navbar() {
+export default function Navbar(props) {
+	const location = useLocation();
+
 	return (
 		<div className="navbar custom-navbar" role="navigation">
 			<div className="container">
@@ -10,49 +13,24 @@ export default function Navbar() {
 						<span className="icon icon-bar" /> <span className="icon icon-bar" />{' '}
 						<span className="icon icon-bar" />{' '}
 					</button>
-					<a href="index-2.html" className="navbar-brand">
-						<img src={require('../../assets/images/logo-color.png')} alt="" />
-					</a>{' '}
+					<Link to="/" className="navbar-brand">
+						<strong className="text-danger">BRAND</strong>
+					</Link>{' '}
 				</div>
 
 				<div className="collapse navbar-collapse">
 					<ul className="nav navbar-nav navbar-right">
-						<li className="dropdown active">
-							<a href="index-2.html">
-								Home <span className="caret" />
-							</a>
-
-							<ul className="dropdown-menu">
-								<li className="active">
-									<a href="index-2.html">Home Slider</a>
-								</li>
-								<li>
-									<a href="index2.html">Home Static</a>
-								</li>
-							</ul>
+						<li className={location.pathname === '/' && 'active'}>
+							<Link to="/">Home</Link>
 						</li>
-						<li>
-							<a href="about-us.html">About</a>
+						<li className={location.pathname === '/about-us' && 'active'}>
+							<Link to="/about-us">About</Link>
 						</li>
-						<li>
-							<a href="services.html">Service</a>
+						<li className={location.pathname === '/services' && 'active'}>
+							<Link to="/services">Service</Link>
 						</li>
-						<li className="dropdown">
-							<a href="#">
-								Blog <span className="caret" />
-							</a>
-
-							<ul className="dropdown-menu">
-								<li>
-									<a href="blog-list.html">Blog Right Sidebar</a>
-								</li>
-								<li>
-									<a href="blog-list2.html">Blog Left Sidebar</a>
-								</li>
-								<li>
-									<a href="blog-detail.html">Blog Detail</a>
-								</li>
-							</ul>
+						<li className={location.pathname === '/blog' && 'active'}>
+							<Link to="/blog">Blog</Link>
 						</li>
 						<li className="dropdown">
 							<a href="#">
@@ -92,8 +70,8 @@ export default function Navbar() {
 								</li>
 							</ul>
 						</li>
-						<li>
-							<a href="contact-us.html">Contact</a>
+						<li className={location.pathname === '/contact-us' && 'active'}>
+							<Link to="/contact-us">Contact</Link>
 						</li>
 						<li>
 							<span className="calltxt">

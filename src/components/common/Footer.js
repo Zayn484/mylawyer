@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 
 export default function Footer() {
 	return (
@@ -9,7 +10,7 @@ export default function Footer() {
 						<div className="col-xs-12 col-sm-6 col-md-3">
 							<div className="footer-lwf">
 								<h3 className="footer-logo">
-									<img src={require('../../assets/images/logo.png')} alt="Lawyer & Attorney" />
+									<strong className="text-danger">BRAND</strong>
 								</h3>
 								<p>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquet, massa ac
@@ -33,51 +34,24 @@ export default function Footer() {
 								<h3 className="footer-lwf-title">Quick Links</h3>
 								<ul>
 									<li>
-										<a href="index-2.html">Home</a>
+										<Link to="/">Home</Link>
 									</li>
 									<li>
-										<a href="about.html">About Company</a>
+										<Link to="/about-us">About Company</Link>
 									</li>
 									<li>
-										<a href="services.html">Our Services</a>
+										<Link to="/services">Our Services</Link>
 									</li>
 									<li>
-										<a href="blog-list.html">Blog</a>
+										<Link to="/blog">Blog</Link>
 									</li>
 									<li>
-										<a href="contact-us.html">Contact Us</a>
-									</li>
-									<li>
-										<a href="gallery.html">Gallery</a>
+										<Link to="/contact-us">Contact Us</Link>
 									</li>
 								</ul>
 							</div>
 						</div>
-						<div className="col-xs-12 col-sm-6 col-md-3">
-							<div className="footer-lwf footer-menu">
-								<h3 className="footer-lwf-title">About Lawyer</h3>
-								<ul>
-									<li>
-										<a href="practice-areas.html">Practice Areas List</a>
-									</li>
-									<li>
-										<a href="practice-area-detail.html">Practice Areas Detail</a>
-									</li>
-									<li>
-										<a href="attorney-list.html">Attorney List</a>
-									</li>
-									<li>
-										<a href="attorney.html">Attorney Detail</a>
-									</li>
-									<li>
-										<a href="faq.html">FAQs</a>
-									</li>
-									<li>
-										<a href="testimonials.html">Testimonials</a>
-									</li>
-								</ul>
-							</div>
-						</div>
+						<div className="col-xs-12 col-sm-6 col-md-3" />
 						<div className="col-xs-12 col-sm-6 col-md-3">
 							<div className="footer-lwf">
 								<h3 className="footer-lwf-title">Opening Hours</h3>

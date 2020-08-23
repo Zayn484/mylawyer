@@ -12,7 +12,7 @@ export default function BlogCard({ count }) {
 				</div>
 				<ul className="blogGrid">
 					{Array.from(new Array(count)).map((el, index) => (
-						<li className="item" key={index}>
+						<li className="item col-md-4" key={index}>
 							<div className="int">
 								<div className="postimg">
 									{' '}
