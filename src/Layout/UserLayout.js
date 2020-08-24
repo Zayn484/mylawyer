@@ -13,6 +13,7 @@ const Blog = lazy(() => import('../pages/blog'));
 const BlogDetail = lazy(() => import('../pages/blogDetail'));
 const Contact = lazy(() => import('../pages/contact'));
 const Login = lazy(() => import('../pages/login'));
+const Signup = lazy(() => import('../pages/signup'));
 
 export default function UserLayout() {
 	return (
@@ -27,6 +28,7 @@ export default function UserLayout() {
 					<Route path="/blog/1" exact component={BlogDetail} />
 					<Route path="/contact-us" exact component={Contact} />
 					<Route path="/login" exact component={Login} />
+					<Route path="/signup" exact component={Signup} />
 				</Switch>
 			</Suspense>
 			<Footer />
