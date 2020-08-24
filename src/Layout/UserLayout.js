@@ -1,6 +1,8 @@
 import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import '../assets/css/style.css';
+
 import Navbar from '../components/common/Navbar';
 import Footer from '../components/common/Footer';
 
@@ -10,6 +12,7 @@ const Services = lazy(() => import('../pages/services'));
 const Blog = lazy(() => import('../pages/blog'));
 const BlogDetail = lazy(() => import('../pages/blogDetail'));
 const Contact = lazy(() => import('../pages/contact'));
+const Login = lazy(() => import('../pages/login'));
 
 export default function UserLayout() {
 	return (
@@ -23,6 +26,7 @@ export default function UserLayout() {
 					<Route path="/blog" exact component={Blog} />
 					<Route path="/blog/1" exact component={BlogDetail} />
 					<Route path="/contact-us" exact component={Contact} />
+					<Route path="/login" exact component={Login} />
 				</Switch>
 			</Suspense>
 			<Footer />

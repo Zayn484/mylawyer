@@ -226,8 +226,6 @@ export default function home() {
 			<Consulation />
 
 			<Faqs />
-
-			<BlogCard count={3} />
 		</div>
 	);
 }

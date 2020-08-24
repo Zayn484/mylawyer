@@ -10,7 +10,7 @@ export default function Footer() {
 						<div className="col-xs-12 col-sm-6 col-md-3">
 							<div className="footer-lwf">
 								<h3 className="footer-logo">
-									<strong className="text-danger">BRAND</strong>
+									<strong className="text-danger">MY LAWYER</strong>
 								</h3>
 								<p>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquet, massa ac

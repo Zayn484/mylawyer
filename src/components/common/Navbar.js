@@ -1,8 +1,9 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, useHistory, Link } from 'react-router-dom';
 
 export default function Navbar(props) {
 	const location = useLocation();
+	const history = useHistory();
 
 	return (
 		<div className="navbar custom-navbar" role="navigation">
@@ -14,7 +15,7 @@ export default function Navbar(props) {
 						<span className="icon icon-bar" />{' '}
 					</button>
 					<Link to="/" className="navbar-brand">
-						<strong className="text-danger">BRAND</strong>
+						<strong className="text-danger">MY LAWYER</strong>
 					</Link>{' '}
 				</div>
 
@@ -29,10 +30,7 @@ export default function Navbar(props) {
 						<li className={location.pathname === '/services' && 'active'}>
 							<Link to="/services">Service</Link>
 						</li>
-						<li className={location.pathname === '/blog' && 'active'}>
-							<Link to="/blog">Blog</Link>
-						</li>
-						<li className="dropdown">
+						{/* <li className="dropdown">
 							<a href="#">
 								Pages <span className="caret" />
 							</a>
@@ -69,13 +67,13 @@ export default function Navbar(props) {
 									<a href="404.html">404</a>
 								</li>
 							</ul>
-						</li>
+						</li> */}
 						<li className={location.pathname === '/contact-us' && 'active'}>
 							<Link to="/contact-us">Contact</Link>
 						</li>
 						<li>
-							<span className="calltxt">
-								<i className="fa fa-phone" aria-hidden="true" /> 123 456 7890
+							<span className="nav-login" onClick={() => history.push('/login')}>
+								<i className="fa fa-user" aria-hidden="true" /> Login
 							</span>
 						</li>
 					</ul>

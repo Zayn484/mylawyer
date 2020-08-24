@@ -6,7 +6,7 @@ export default function Team() {
 			<div className="container">
 				<div className="section-title">
 					<h3>
-						Our Attorneys <span>Team</span>
+						Our <span>Team</span>
 					</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 				</div>
