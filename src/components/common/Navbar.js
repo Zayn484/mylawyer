@@ -10,13 +10,12 @@ export default function Navbar(props) {
 			<div className="container">
 				<div className="navbar-header">
 					<button className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						{' '}
-						<span className="icon icon-bar" /> <span className="icon icon-bar" />{' '}
-						<span className="icon icon-bar" />{' '}
+						<span className="icon icon-bar" /> <span className="icon icon-bar" />
+						<span className="icon icon-bar" />
 					</button>
 					<Link to="/" className="navbar-brand">
 						<strong className="text-danger">MY LAWYER</strong>
-					</Link>{' '}
+					</Link>
 				</div>
 
 				<div className="collapse navbar-collapse">
@@ -72,9 +71,15 @@ export default function Navbar(props) {
 							<Link to="/contact-us">Contact</Link>
 						</li>
 						<li>
-							<span className="nav-login" onClick={() => history.push('/login')}>
-								<i className="fa fa-user" aria-hidden="true" /> Login
-							</span>
+							{localStorage.getItem('user') ? (
+								<span className="nav-login" onClick={() => history.push('/my-account')}>
+									<i className="fa fa-user" aria-hidden="true" /> Account
+								</span>
+							) : (
+								<span className="nav-login" onClick={() => history.push('/login')}>
+									<i className="fa fa-user" aria-hidden="true" /> Login
+								</span>
+							)}
 						</li>
 					</ul>
 				</div>

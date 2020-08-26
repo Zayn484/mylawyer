@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
 	return (
@@ -63,19 +63,6 @@ export default function Footer() {
 										<span>Sun:</span> <span className="text-right">Closed</span>
 									</li>
 								</ul>
-								<div className="newsletter">
-									<form>
-										<input
-											type="text"
-											placeholder="Enter your email"
-											value=""
-											className="news-input"
-										/>
-										<button type="submit" value="" className="news-btn">
-											<i className="fa fa-envelope-o" aria-hidden="true" />
-										</button>
-									</form>
-								</div>
 							</div>
 						</div>
 					</div>

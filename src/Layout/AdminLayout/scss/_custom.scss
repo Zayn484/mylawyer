@@ -1,0 +1,59 @@
+// Here you can add other styles
+
+.admin-layout {
+	font-size: 1.5rem !important;
+}
+
+input {
+	height: 40px !important;
+	font-size: 1.2rem !important;
+}
+
+.btn {
+	padding: 10px 20px;
+	font-weight: bolder;
+}
+
+.action-btn {
+	padding: 5px 10px;
+}
+
+.btn-primary {
+	background-color: $primary-color;
+	border: 0;
+
+	&:hover {
+		background-color: #d92327;
+	}
+}
+
+.sidebar {
+	background-color: #fdfdfdf5;
+	color: black;
+
+	& > div > ul li {
+		color: black !important;
+
+		& .nav-link.active {
+			color: $primary-color;
+			background-color: white;
+		}
+
+		& .nav-link {
+			color: black;
+
+			& > .nav-icon {
+				color: black !important;
+			}
+
+			&:hover {
+				color: $primary-color;
+				background-color: white;
+			}
+		}
+	}
+}
+
+.page-link:hover {
+	cursor: pointer;
+}

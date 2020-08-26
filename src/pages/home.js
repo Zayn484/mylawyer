@@ -4,7 +4,6 @@ import Services from '../components/Services';
 import Team from '../components/Team';
 import Consulation from '../components/Consulation';
 import Faqs from '../components/Faqs';
-import BlogCard from '../components/BlogCard';
 
 export default function home() {
 	return (

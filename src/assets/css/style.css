@@ -1242,3 +1242,26 @@ iframe {
 	right: 0px;
 	bottom: 0px;
 }
+
+.search-lawyer {
+	margin-top: 150px;
+	margin-left: 200px;
+	padding: 20px;
+	border-radius: 5px;
+	min-width: 30%;
+	min-height: 40%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #fdfdf5;
+}
+
+.search-lawyer form input {
+	margin-top: 20px;
+}
+
+@media (max-width: 560px) {
+	.search-lawyer {
+		width: 90%;
+	}
+}
