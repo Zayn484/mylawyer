@@ -14,7 +14,7 @@ export default function Navbar(props) {
 						<span className="icon icon-bar" />
 					</button>
 					<Link to="/" className="navbar-brand">
-						<strong className="text-danger">MY LAWYER</strong>
+						<strong className="text-danger">LAWYER DIRECTORY</strong>
 					</Link>
 				</div>
 

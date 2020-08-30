@@ -5,8 +5,6 @@ import { Container } from 'reactstrap';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
-	AppAside,
-	AppFooter,
 	AppHeader,
 	AppSidebar,
 	AppSidebarFooter,
@@ -21,22 +19,14 @@ import navigation from './_nav';
 // routes config
 import routes from './routes';
 
-const DefaultAside = React.lazy(() => import('./DefaultAside'));
 const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
 
 class DefaultLayout extends Component {
 	componentDidMount() {
 		require('./scss/style.scss');
-		// if (!localStorage.getItem('token')) this.props.history.replace('/login');
 	}
 
 	loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>;
-
-	// signOut(e) {
-	// 	e.preventDefault();
-	// 	localStorage.removeItem('token');
-	// 	this.props.history.push('/login');
-	// }
 
 	render() {
 		return (

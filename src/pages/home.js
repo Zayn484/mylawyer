@@ -5,7 +5,7 @@ import Team from '../components/Team';
 import Consulation from '../components/Consulation';
 import Faqs from '../components/Faqs';
 
-export default function home() {
+export default function home(props) {
 	return (
 		<div>
 			<Banner />
@@ -20,7 +20,7 @@ export default function home() {
 							<div className="stcontent">
 								<div className="section-title">
 									<h3>
-										Welcome to <span>My Lawyer</span>
+										Welcome to <span>Lawyer Directory</span>
 									</h3>
 									<p>
 										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquet, massa ac

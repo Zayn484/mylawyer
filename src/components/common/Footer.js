@@ -10,7 +10,7 @@ export default function Footer() {
 						<div className="col-xs-12 col-sm-6 col-md-3">
 							<div className="footer-lwf">
 								<h3 className="footer-logo">
-									<strong className="text-danger">MY LAWYER</strong>
+									<strong className="text-danger">LAWYER DIRECTORY</strong>
 								</h3>
 								<p>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquet, massa ac
@@ -37,13 +37,10 @@ export default function Footer() {
 										<Link to="/">Home</Link>
 									</li>
 									<li>
-										<Link to="/about-us">About Company</Link>
+										<Link to="/about-us">About Us</Link>
 									</li>
 									<li>
 										<Link to="/services">Our Services</Link>
-									</li>
-									<li>
-										<Link to="/blog">Blog</Link>
 									</li>
 									<li>
 										<Link to="/contact-us">Contact Us</Link>
