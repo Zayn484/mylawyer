@@ -20,6 +20,7 @@ export default class DefaultLayout extends Component {
 	componentDidMount() {
 		require('../../assets/css/style.css');
 	}
+
 	render() {
 		return (
 			<Suspense fallback={<div>Loading...</div>}>

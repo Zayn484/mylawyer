@@ -29,44 +29,7 @@ export default function Navbar(props) {
 						<li className={location.pathname === '/services' && 'active'}>
 							<Link to="/services">Service</Link>
 						</li>
-						{/* <li className="dropdown">
-							<a href="#">
-								Pages <span className="caret" />
-							</a>
 
-							<ul className="dropdown-menu">
-								<li>
-									<a href="practice-areas.html">Practice Areas List</a>
-								</li>
-								<li>
-									<a href="practice-area-detail.html">Practice Areas Detail</a>
-								</li>
-								<li>
-									<a href="attorney-list.html">Attorney List</a>
-								</li>
-								<li>
-									<a href="attorney.html">Attorney Detail</a>
-								</li>
-								<li>
-									<a href="gallery.html">Gallery 1</a>
-								</li>
-								<li>
-									<a href="gallery2.html">Gallery 2</a>
-								</li>
-								<li>
-									<a href="gallery3.html">Gallery 3</a>
-								</li>
-								<li>
-									<a href="faq.html">FAQs</a>
-								</li>
-								<li>
-									<a href="testimonials.html">Testimonials</a>
-								</li>
-								<li>
-									<a href="404.html">404</a>
-								</li>
-							</ul>
-						</li> */}
 						<li className={location.pathname === '/contact-us' && 'active'}>
 							<Link to="/contact-us">Contact</Link>
 						</li>
