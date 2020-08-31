@@ -8,7 +8,7 @@ const geoOptions = {
 
 	// Optional depending on the providers
 	httpAdapter: 'https', // Default
-	apiKey: 'AIzaSyAaTrZxzHEMpSCOS9Lq5AWCyScys8IDOEg', // for Mapquest, OpenCage, Google Premier
+	apiKey: 'API_KEY', // for Mapquest, OpenCage, Google Premier
 	formatter: null // 'gpx', 'string', ...
 };
 
