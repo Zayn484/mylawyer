@@ -1,16 +1,21 @@
 import React from 'react';
-import axios from '../axios.config'
+import axios from '../axios.config';
 import Banner from '../components/Banner';
 import Services from '../components/Services';
 import Team from '../components/Team';
 import Consulation from '../components/Consulation';
 
-
 export default function Home(props) {
+	const [ lawyers, setLawyers ] = React.useState([]);
 
 	React.useEffect(() => {
-
-	},[])
+		axios
+			.get('/home/list_of_4_lawyer')
+			.then((res) => {
+				setLawyers(res.data.data);
+			})
+			.catch((err) => console.log(err));
+	}, []);
 
 	return (
 		<div>
@@ -226,10 +231,9 @@ export default function Home(props) {
 
 			<Services />
 
-			<Team />
+			<Team list={lawyers} />
 
 			<Consulation />
-
 		</div>
 	);
 }

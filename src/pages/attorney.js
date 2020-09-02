@@ -58,23 +58,6 @@ export default function Attorney() {
 										</div>
 										<h4 className="text-uppercase">{l.name}</h4>
 										<h5 className="text-capitalize">{l.type}</h5>
-										{/* <ul className="list-inline social">
-										<li>
-											<a href="javascript:void(0);" className="bg-twitter">
-												<i className="fa fa-twitter" aria-hidden="true" />
-											</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" className="bg-facebook">
-												<i className="fa fa-facebook" aria-hidden="true" />
-											</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" className="bg-linkedin">
-												<i className="fa fa-linkedin" aria-hidden="true" />
-											</a>
-										</li>
-									</ul> */}
 									</div>
 								</div>
 							</Link>
