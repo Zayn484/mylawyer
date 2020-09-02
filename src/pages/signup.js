@@ -1,8 +1,11 @@
 import React from 'react';
+import {useHistory} from 'react-router-dom'
 import axios from '../axios.config';
 import { toast } from 'react-toastify';
 
 export default function Signup() {
+	const history = useHistory()
+
 	const [ fields, setFields ] = React.useState({});
 	const [ file, setFile ] = React.useState(null);
 
@@ -17,15 +20,25 @@ export default function Signup() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
+		const fd = new FormData();
+		fd.append('profileImage', file);
+		fd.append('phoneNo', fields.phoneNo);
+		fd.append('gender', fields.gender);
+		fd.append('name', fields.name);
+		fd.append('email', fields.email);
+		fd.append('password', fields.password);
+		fd.append('type', fields.type);
+
 		axios
-			.post('/home/signUp', {
-				...fields,
-				profileImage: file
-			})
+			.post('/home/signUp', fd)
 			.then((res) => {
-				console.log(res);
 				if (res.data.code !== 200) {
-					toast.error('Something went wrong! Try again later.');
+					toast.error(res.data.status);
+				} else {
+					toast.success('Account created successfully')
+					setTimeout(() => {
+						history.replace('/login');	
+					}, 1000);
 				}
 			})
 			.catch((err) => {

@@ -287,12 +287,13 @@ export default function Account() {
 									value={generalInfo.country}
 									onChange={(e) => inputChangeHandler(1, e)}
 								/>
-								<Input
-									placeholder="City"
-									name="city"
-									value={generalInfo.city}
-									onChange={(e) => inputChangeHandler(1, e)}
-								/>
+								<Input type="select" defaultValue={generalInfo.city} onChange={(e) => inputChangeHandler(1, e)}>
+									<option value="sialkot">Sialkot</option>
+									<option value="gujranwala">Gujranwala</option>
+									<option value="lahore">Lahore</option>
+									<option value="karachi">Karachi</option>
+									<option value="peshawar">Peshawar</option>
+								</Input>
 								<Input
 									placeholder="State"
 									name="state"
@@ -448,6 +449,9 @@ export default function Account() {
 								</Button>
 							</div>
 						)}
+					</Col>
+					<Col md={1}>
+						<label>{JSON.parse(localStorage.getItem('user')).name}</label>
 					</Col>
 				</Row>
 			</Container>

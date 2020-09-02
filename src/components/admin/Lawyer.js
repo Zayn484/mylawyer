@@ -46,7 +46,7 @@ const Lawyer = () => {
 				data={laywers.data ? laywers.data : []}
 				url="/admin/laywers"
 				fetchData={getLawyers}
-				actions={[]}
+				actions={['delete']}
 			/>
 		</div>
 	);

@@ -18,18 +18,33 @@ import {
 import navigation from './_nav';
 // routes config
 import routes from './routes';
+import Login from '../../components/admin/Login';
 
 const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
 
 class DefaultLayout extends Component {
+	state = {
+		auth: false
+	};
+
 	componentDidMount() {
 		require('./scss/style.scss');
 	}
 
+	login = (username, password) => {
+		if (username === 'admin' && password === '1234') {
+			this.setState({ auth: true });
+		} else {
+			alert('Invalid credentials');
+		}
+	};
+
 	loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>;
 
 	render() {
-		return (
+		return !this.state.auth ? (
+			<Login login={this.login} />
+		) : (
 			<div className="app admin-layout">
 				<ToastContainer />
 				<AppHeader fixed>

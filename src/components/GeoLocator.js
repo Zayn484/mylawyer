@@ -8,7 +8,7 @@ const geoOptions = {
 
 	// Optional depending on the providers
 	httpAdapter: 'https', // Default
-	apiKey: 'API_KEY', // for Mapquest, OpenCage, Google Premier
+	apiKey: 'AIzaSyAm4VxhmADtL6zpXCY26thCvbbUzgriJCA', // for Mapquest, OpenCage, Google Premier
 	formatter: null // 'gpx', 'string', ...
 };
 
@@ -69,7 +69,7 @@ class GeoLocator extends Component {
 					lon: this.props.coords.longitude
 				})
 				.then((res) => {
-					console.log(res);
+					this.props.setCoords(res[0].latitude, res[0].longitude);
 					this.setState({
 						locationInfo: `${res[0].city}, ${res[0].country}`
 					});

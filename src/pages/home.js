@@ -1,11 +1,17 @@
 import React from 'react';
+import axios from '../axios.config'
 import Banner from '../components/Banner';
 import Services from '../components/Services';
 import Team from '../components/Team';
 import Consulation from '../components/Consulation';
-import Faqs from '../components/Faqs';
 
-export default function home(props) {
+
+export default function Home(props) {
+
+	React.useEffect(() => {
+
+	},[])
+
 	return (
 		<div>
 			<Banner />
@@ -224,7 +230,6 @@ export default function home(props) {
 
 			<Consulation />
 
-			<Faqs />
 		</div>
 	);
 }
