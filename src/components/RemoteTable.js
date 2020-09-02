@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from '../axios.config';
 import { Link } from 'react-router-dom';
 import { useLocation, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -9,6 +10,12 @@ const RemoteTable = ({ title, columns, data, url, fetchData, actions, addNew }) 
 	const history = useHistory();
 
 	const [ modal, setModal ] = useState(false);
+
+	const deleteHandler = (id, index) => {
+		axios.delete(`/home/delete_Type?id=${id}`).then((res) => {
+			fetchData();
+		});
+	};
 
 	const actionButtons = (el, index) => {
 		return (
@@ -29,10 +36,25 @@ const RemoteTable = ({ title, columns, data, url, fetchData, actions, addNew }) 
 					<button
 						color="secondary"
 						className="m-1 bg-transparent text-success action-btn"
-						onClick={() => history.push(`${location.pathname}/edit/${el._id}`)}
+						onClick={() =>
+							history.push({
+								pathname: `${location.pathname}/edit`,
+								state: {
+									...el
+								}
+							})}
 					>
 						<i className="fa fa-edit" />
 					</button>
+				)}
+				{actions.includes('delete') && (
+					<Button
+						color="secondary"
+						className="m-1 bg-transparent text-danger action-btn"
+						onClick={() => deleteHandler(el._id, index)}
+					>
+						<i className="fa fa-trash" />
+					</Button>
 				)}
 				{!actions.length && <span>No actions</span>}
 			</td>

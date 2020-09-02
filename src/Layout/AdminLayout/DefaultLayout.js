@@ -35,7 +35,7 @@ class DefaultLayout extends Component {
 		if (username === 'admin' && password === '1234') {
 			this.setState({ auth: true });
 		} else {
-			alert('Invalid credentials');
+			return alert('Invalid credentials');
 		}
 	};
 

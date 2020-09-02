@@ -32,9 +32,8 @@ const Category = () => {
 				title="Categories"
 				columns={columns}
 				data={categories.data ? categories.data : []}
-				url="/admin/categories"
 				fetchData={getCategories}
-				actions={[]}
+				actions={[ 'edit', 'delete' ]}
 				addNew={true}
 			/>
 		</div>
