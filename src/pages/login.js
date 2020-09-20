@@ -21,7 +21,7 @@ export default function Login() {
 			.then((res) => {
 				if (res.data.code === 200) {
 					localStorage.setItem('user', JSON.stringify(res.data.data));
-					history.goBack();
+					history.push('/');
 				} else {
 					setError(true);
 				}

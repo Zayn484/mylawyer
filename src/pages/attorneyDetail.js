@@ -1,7 +1,58 @@
 import React from 'react';
+import axios from '../axios.config';
+import { toast } from 'react-toastify';
 
-export default function attorneyDetail(props) {
+export default function AttorneyDetail(props) {
 	const { data } = props.location.state;
+	const [ modal, setModal ] = React.useState(false);
+	const [ slot, setSlot ] = React.useState('1');
+	const [ meridiem, setMeridiem ] = React.useState('am');
+	const [ date, setDate ] = React.useState('');
+	const [ loading, setLoading ] = React.useState(false);
+
+	const renderAppointmentButton = () => {
+		const user = JSON.parse(localStorage.getItem('user'));
+		if (user && user.type === 'client') {
+			return (
+				<li>
+					<i className="fa fa-link" />
+					<button className="btn" onClick={bookAppointment}>
+						Book Appointment
+					</button>
+				</li>
+			);
+		}
+
+		return null;
+	};
+
+	const bookAppointment = () => {
+		setModal(true);
+	};
+
+	const saveAppointment = () => {
+		setLoading(true);
+
+		axios
+			.post('/home/add_booking', {
+				customerId: JSON.parse(localStorage.getItem('user'))._id,
+				lawyerId: data._id,
+				slot: slot + meridiem,
+				date: date
+			})
+			.then((res) => {
+				if (res.data.code === 200) {
+					setModal(false);
+					toast.success('Appointment successful');
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			})
+			.finally(() => {
+				setLoading(false);
+			});
+	};
 
 	return (
 		<div>
@@ -46,8 +97,9 @@ export default function attorneyDetail(props) {
 									</li>
 									<li>
 										<i className="fa fa-globe" />
-										<a href="#">www.LawyerDirectory.com</a>
+										<a href="#">www.lawyerdirectory.com</a>
 									</li>
+									{renderAppointmentButton()}
 								</ul>
 							</div>
 						</div>
@@ -109,6 +161,43 @@ export default function attorneyDetail(props) {
 								</div>
 							)}
 						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="myModal" className="modal" style={{ display: modal ? 'block' : 'none' }}>
+				<div className="modal-content">
+					<span className="close" onClick={() => setModal(false)}>
+						&times;
+					</span>
+					<br />
+					<div>
+						<div style={{ display: 'inline-block', width: '100%' }}>
+							<select style={{ width: '80%', height: '30px' }} onChange={(e) => setSlot(e.target.value)}>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+							</select>
+
+							<select
+								style={{ width: '20%', height: '30px' }}
+								onChange={(e) => setMeridiem(e.target.value)}
+							>
+								<option value="am">AM</option>
+								<option value="pm">PM</option>
+							</select>
+						</div>
+						<input type="date" placeholder="Date" onChange={(e) => setDate(e.target.value)} />
+						<input type="button" value="Book" onClick={saveAppointment} disabled={loading} />
 					</div>
 				</div>
 			</div>

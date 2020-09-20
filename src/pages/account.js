@@ -3,6 +3,27 @@ import { Container, Row, Col, ListGroup, ListGroupItem, Button, Input } from 're
 import { Link } from 'react-router-dom';
 import axios from '../axios.config';
 import { toast } from 'react-toastify';
+import RemoteTable from '../components/RemoteTable';
+
+const columns = [
+	{
+		field: '_id',
+		name: 'ID'
+	},
+	{
+		field: 'slot',
+		name: 'Slot'
+	},
+	{
+		field: 'date',
+		name: 'Date'
+	},
+	{
+		field: 'status',
+		name: 'Status'
+	}
+];
+
 export default function Account() {
 	const [ activetab, setActiveTab ] = React.useState(1);
 	const [ generalInfo, setGeneralInfo ] = React.useState({});
@@ -10,10 +31,12 @@ export default function Account() {
 	const [ socialMedia, setSocialMedia ] = React.useState({});
 	const [ types, setTypes ] = React.useState({});
 	const [ date, setDate ] = React.useState(new Date());
+	const [ bookings, setBookings ] = React.useState([]);
 	const [ success, setSuccess ] = React.useState(false);
 
 	React.useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('user'));
+		fetchBookings();
 
 		if (user.genralInformation) {
 			setGeneralInfo(user.genralInformation);
@@ -38,6 +61,18 @@ export default function Account() {
 		const days = [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday' ];
 
 		return days.map((d) => <option key={d}>{d}</option>);
+	};
+
+	const fetchBookings = () => {
+		const user = JSON.parse(localStorage.getItem('user'));
+		let url = '';
+
+		if (user.type === 'lawyer') url = `/home/lawyer_bookings?lawyerId=${user._id}`;
+		else url = `/home/customer_bookings?customerId=${user._id}`;
+
+		axios.get(url).then((res) => {
+			setBookings(res.data);
+		});
 	};
 
 	/**
@@ -251,6 +286,9 @@ export default function Account() {
 							<Link to="#" onClick={() => setActiveTab(5)}>
 								<ListGroupItem>Availability Schedule</ListGroupItem>
 							</Link>
+							<Link to="#" onClick={() => setActiveTab(6)}>
+								<ListGroupItem>Booking Requests</ListGroupItem>
+							</Link>
 							<Link
 								to="#"
 								onClick={() => {
@@ -287,7 +325,11 @@ export default function Account() {
 									value={generalInfo.country}
 									onChange={(e) => inputChangeHandler(1, e)}
 								/>
-								<Input type="select" defaultValue={generalInfo.city} onChange={(e) => inputChangeHandler(1, e)}>
+								<Input
+									type="select"
+									defaultValue={generalInfo.city}
+									onChange={(e) => inputChangeHandler(1, e)}
+								>
 									<option value="sialkot">Sialkot</option>
 									<option value="gujranwala">Gujranwala</option>
 									<option value="lahore">Lahore</option>
@@ -447,6 +489,20 @@ export default function Account() {
 								<Button style={{ marginTop: 20 }} onClick={() => handleSave(5)}>
 									Save
 								</Button>
+							</div>
+						)}
+
+						{activetab === 6 && (
+							<div className="account-form">
+								<h4>Booking Requests</h4>
+								<br />
+								<RemoteTable
+									title="Bookings"
+									columns={columns}
+									data={bookings.data ? bookings.data : []}
+									fetchData={fetchBookings}
+									actions={[ 'status' ]}
+								/>
 							</div>
 						)}
 					</Col>

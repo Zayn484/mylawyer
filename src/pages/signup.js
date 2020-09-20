@@ -1,10 +1,10 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import axios from '../axios.config';
 import { toast } from 'react-toastify';
 
 export default function Signup() {
-	const history = useHistory()
+	const history = useHistory();
 
 	const [ fields, setFields ] = React.useState({});
 	const [ file, setFile ] = React.useState(null);
@@ -35,9 +35,9 @@ export default function Signup() {
 				if (res.data.code !== 200) {
 					toast.error(res.data.status);
 				} else {
-					toast.success('Account created successfully')
+					toast.success('Account created successfully');
 					setTimeout(() => {
-						history.replace('/login');	
+						history.replace('/login');
 					}, 1000);
 				}
 			})
@@ -124,6 +124,7 @@ export default function Signup() {
 								type="text"
 								name="phoneNo"
 								value={fields.phoneNo}
+								required={true}
 								onChange={inputChange}
 							/>
 							<span className="focus-input100" />
@@ -151,6 +152,7 @@ export default function Signup() {
 									class="custom-file-input"
 									id="inputGroupFile01"
 									aria-describedby="inputGroupFileAddon01"
+									required={true}
 									onChange={(e) => setFile(e.target.files[0])}
 								/>
 								<label class="custom-file-label" for="inputGroupFile01">

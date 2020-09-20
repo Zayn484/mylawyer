@@ -20,6 +20,22 @@ const RemoteTable = ({ title, columns, data, url, fetchData, actions, addNew }) 
 	const actionButtons = (el, index) => {
 		return (
 			<td>
+				{actions.includes('status') && (
+					<select
+						defaultValue={el.status}
+						onChange={(e) => {
+							axios
+								.put(`/home/update_booking`, { status: e.target.value, bookingId: el._id })
+								.then((res) => {
+									fetchData();
+								});
+						}}
+					>
+						<option value="pending">Pending</option>
+						<option value="accept">Accept</option>
+						<option value="decline">Decline</option>
+					</select>
+				)}
 				{actions.includes('view') && (
 					<button
 						color="secondary"

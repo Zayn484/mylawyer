@@ -53,8 +53,6 @@ export default function about() {
 					</div>
 				</div>
 			</div>
-
-			<Team />
 		</div>
 	);
 }
