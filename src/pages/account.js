@@ -7,12 +7,12 @@ import RemoteTable from '../components/RemoteTable';
 
 const columns = [
 	{
-		field: '_id',
-		name: 'ID'
+		field: 'userEmail',
+		name: 'Email'
 	},
 	{
-		field: 'slot',
-		name: 'Slot'
+		field: 'userName',
+		name: 'Username'
 	},
 	{
 		field: 'date',

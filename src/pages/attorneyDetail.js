@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from '../axios.config';
 import { toast } from 'react-toastify';
+import ReactWhatsapp from 'react-whatsapp';
 
 export default function AttorneyDetail(props) {
 	const { data } = props.location.state;
@@ -100,6 +101,12 @@ export default function AttorneyDetail(props) {
 										<a href="#">www.lawyerdirectory.com</a>
 									</li>
 									{renderAppointmentButton()}
+									<li>
+										<i className="fa fa-envelope" />
+										<ReactWhatsapp className="btn btn-danger" number={data.phoneNo.toString()}>
+											Start Chatting
+										</ReactWhatsapp>
+									</li>
 								</ul>
 							</div>
 						</div>
