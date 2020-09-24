@@ -7,7 +7,7 @@ export default function Team({ list }) {
 			<div className="container">
 				<div className="section-title">
 					<h3>
-						Our <span>Team</span>
+						Our <span>Featured Lawyers</span>
 					</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 				</div>

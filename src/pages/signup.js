@@ -91,7 +91,7 @@ export default function Signup() {
 							<input
 								className="input100"
 								type="password"
-								name="pass"
+								name="password"
 								required={true}
 								value={fields.password}
 								onChange={inputChange}
