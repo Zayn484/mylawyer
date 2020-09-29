@@ -5,11 +5,17 @@ import { useLocation, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Badge, Card, CardBody, CardHeader, Col, Row, Table, Button } from 'reactstrap';
 
+let user = {};
+
 const RemoteTable = ({ title, columns, data, url, fetchData, actions, addNew }) => {
 	const location = useLocation();
 	const history = useHistory();
 
 	const [ modal, setModal ] = useState(false);
+
+	React.useEffect(() => {
+		user = JSON.parse(localStorage.getItem('user'));
+	}, []);
 
 	const deleteHandler = (id, index) => {
 		axios.delete(`/home/delete_Type?id=${id}`).then((res) => {
@@ -20,7 +26,8 @@ const RemoteTable = ({ title, columns, data, url, fetchData, actions, addNew }) 
 	const actionButtons = (el, index) => {
 		return (
 			<td>
-				{actions.includes('status') && (
+				{actions.includes('status') &&
+				user.type === 'lawyer' && (
 					<select
 						defaultValue={el.status}
 						onChange={(e) => {

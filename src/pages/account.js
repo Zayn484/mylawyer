@@ -3,6 +3,7 @@ import { Container, Row, Col, ListGroup, ListGroupItem, Button, Input } from 're
 import { Link } from 'react-router-dom';
 import axios from '../axios.config';
 import { toast } from 'react-toastify';
+import MultiSelect from 'react-multi-select-component';
 import RemoteTable from '../components/RemoteTable';
 
 const columns = [
@@ -24,6 +25,8 @@ const columns = [
 	}
 ];
 
+let user = {};
+
 export default function Account() {
 	const [ activetab, setActiveTab ] = React.useState(1);
 	const [ generalInfo, setGeneralInfo ] = React.useState({});
@@ -32,11 +35,14 @@ export default function Account() {
 	const [ types, setTypes ] = React.useState({});
 	const [ date, setDate ] = React.useState(new Date());
 	const [ bookings, setBookings ] = React.useState([]);
+	const [ categories, setCategories ] = React.useState([]);
+	const [ selectedCategories, setSelectedCategories ] = React.useState([]);
 	const [ success, setSuccess ] = React.useState(false);
 
 	React.useEffect(() => {
-		const user = JSON.parse(localStorage.getItem('user'));
+		user = JSON.parse(localStorage.getItem('user'));
 		fetchBookings();
+		fetchTypes();
 
 		if (user.genralInformation) {
 			setGeneralInfo(user.genralInformation);
@@ -47,14 +53,22 @@ export default function Account() {
 		if (user.socialMedia) {
 			setSocialMedia(user.socialMedia);
 		}
-		if (user.types) {
+		if (user.types && user.types.length) {
 			setTypes({ types: getTypes() });
+			formatSelectedTypes();
 		}
 	}, []);
 
 	const getTypes = () => {
-		const user = JSON.parse(localStorage.getItem('user'));
 		if (user.types) return user.types.join(',');
+	};
+
+	const formatSelectedTypes = () => {
+		const typs = [];
+		user.types.forEach((element) => {
+			typs.push({ label: element, value: element });
+		});
+		setSelectedCategories(typs);
 	};
 
 	const getDays = () => {
@@ -64,7 +78,6 @@ export default function Account() {
 	};
 
 	const fetchBookings = () => {
-		const user = JSON.parse(localStorage.getItem('user'));
 		let url = '';
 
 		if (user.type === 'lawyer') url = `/home/lawyer_bookings?lawyerId=${user._id}`;
@@ -72,6 +85,16 @@ export default function Account() {
 
 		axios.get(url).then((res) => {
 			setBookings(res.data);
+		});
+	};
+
+	const fetchTypes = () => {
+		axios.get(`/home/list_of_category`).then((res) => {
+			const types = [];
+			res.data.data.forEach((element) => {
+				types.push({ label: element.typeName, value: element.typeName });
+			});
+			setCategories(types);
 		});
 	};
 
@@ -136,8 +159,6 @@ export default function Account() {
 	 */
 	const handleSave = (type) => {
 		let data = {};
-		const user = JSON.parse(localStorage.getItem('user'));
-
 		switch (type) {
 			case 1:
 				data = {
@@ -212,7 +233,7 @@ export default function Account() {
 
 			case 4:
 				data = {
-					types: [ ...types.types.split(',') ],
+					types: selectedCategories.map((cat) => cat.value),
 					userId: user._id
 				};
 				axios
@@ -280,15 +301,20 @@ export default function Account() {
 							<Link to="#" onClick={() => setActiveTab(3)}>
 								<ListGroupItem>Social Media</ListGroupItem>
 							</Link>
-							<Link to="#" onClick={() => setActiveTab(4)}>
-								<ListGroupItem>Type</ListGroupItem>
-							</Link>
-							<Link to="#" onClick={() => setActiveTab(5)}>
-								<ListGroupItem>Availability Schedule</ListGroupItem>
-							</Link>
+							{user.type === 'lawyer' && (
+								<React.Fragment>
+									<Link to="#" onClick={() => setActiveTab(4)}>
+										<ListGroupItem>Type</ListGroupItem>
+									</Link>
+									<Link to="#" onClick={() => setActiveTab(5)}>
+										<ListGroupItem>Availability Schedule</ListGroupItem>
+									</Link>
+								</React.Fragment>
+							)}
 							<Link to="#" onClick={() => setActiveTab(6)}>
 								<ListGroupItem>Booking Requests</ListGroupItem>
 							</Link>
+
 							<Link
 								to="#"
 								onClick={() => {
@@ -314,7 +340,7 @@ export default function Account() {
 									onChange={(e) => inputChangeHandler(1, e)}
 								/>
 								<Input
-									placeholder="Languuage"
+									placeholder="Language"
 									name="language"
 									value={generalInfo.language}
 									onChange={(e) => inputChangeHandler(1, e)}
@@ -327,9 +353,11 @@ export default function Account() {
 								/>
 								<Input
 									type="select"
+									name="city"
 									defaultValue={generalInfo.city}
 									onChange={(e) => inputChangeHandler(1, e)}
 								>
+									<option value="default">Select City</option>
 									<option value="sialkot">Sialkot</option>
 									<option value="gujranwala">Gujranwala</option>
 									<option value="lahore">Lahore</option>
@@ -431,12 +459,19 @@ export default function Account() {
 							<div className="account-form">
 								<h4>Type</h4>
 								<br />
-								<Input
-									placeholder="Types"
-									name="types"
-									value={types.types}
-									onChange={(e) => inputChangeHandler(4, e)}
+								<MultiSelect
+									options={categories}
+									value={selectedCategories}
+									onChange={(e) => {
+										const typs = [];
+										e.forEach((element) => {
+											typs.push(element);
+										});
+										setSelectedCategories(typs);
+									}}
+									labelledBy={'Select'}
 								/>
+
 								<Button style={{ marginTop: 20 }} onClick={() => handleSave(4)}>
 									Save
 								</Button>
