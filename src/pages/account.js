@@ -163,10 +163,35 @@ export default function Account() {
 			case 1:
 				data = {
 					...generalInfo,
-					userId: user._id,
-					lat: 32.4945,
-					lng: 74.5229
+					userId: user._id
 				};
+
+				switch (generalInfo.city) {
+					case 'sialkot':
+						data.lat = 32.534657;
+						data.lng = 74.58457;
+						break;
+					case 'gujranwala':
+						data.lat = 32.187691;
+						data.lng = 74.19445;
+						break;
+					case 'lahore':
+						data.lat = 31.52037;
+						data.lng = 74.358749;
+						break;
+					case 'karachi':
+						data.lat = 24.860735;
+						data.lng = 67.001137;
+						break;
+					case 'peshawar':
+						data.lat = 34.015137;
+						data.lng = 71.524918;
+						break;
+
+					default:
+						break;
+				}
+
 				axios
 					.put('/home/add_genralInformation', data)
 					.then((res) => {
