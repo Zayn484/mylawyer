@@ -10,9 +10,17 @@ export default function Attorney() {
 
 	React.useEffect(() => {
 		const { category, city, lat, lng } = queryString.parse(location.search);
+		let url = '';
+
+		if (lat && lng) {
+			url = `/home/list_of_layer?category=${category}&city=${city}&lat=${lat}&lng=${lng}`;
+		} else {
+			url = `/home/list_of_layer?category=${category}&city=${city}`
+		}
+
 
 		axios
-			.get(`/home/list_of_layer?category=${category}&city=${city}`)
+			.get(url)
 			.then((res) => {
 				setList(res.data.data);
 			})

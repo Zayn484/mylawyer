@@ -4,6 +4,7 @@ import { Form, Input, Button } from 'reactstrap';
 import axios from '../axios.config';
 import GeoLocator from './GeoLocator';
 import Map from './Map';
+import MapContainer from './common/Map/MapContainer';
 
 export default function SearchLawyer() {
 	const history = useHistory();
@@ -22,42 +23,48 @@ export default function SearchLawyer() {
 
 	const selectCity = (e) => {
 		const city = e.target.value;
+		setCity(city);
 
-		switch (city) {
-			case 'sialkot':
-				setCity(city);
-				setLatLng([ 32.534657, 74.58457 ]);
-				break;
+		// switch (city) {
+		// 	case 'sialkot':
+		// 		setCity(city);
+		// 		setLatLng([ 32.534657, 74.58457 ]);
+		// 		break;
 
-			case 'gujranwala':
-				setCity(city);
-				setLatLng([ 32.187691, 74.19445 ]);
-				break;
+		// 	case 'gujranwala':
+		// 		setCity(city);
+		// 		setLatLng([ 32.187691, 74.19445 ]);
+		// 		break;
 
-			case 'lahore':
-				setCity(city);
-				setLatLng([ 31.52037, 74.358749 ]);
-				break;
+		// 	case 'lahore':
+		// 		setCity(city);
+		// 		setLatLng([ 31.52037, 74.358749 ]);
+		// 		break;
 
-			case 'karachi':
-				setCity(city);
-				setLatLng([ 24.860735, 67.001137 ]);
-				break;
+		// 	case 'karachi':
+		// 		setCity(city);
+		// 		setLatLng([ 24.860735, 67.001137 ]);
+		// 		break;
 
-			case 'peshawar':
-				setCity(city);
-				setLatLng([ 34.015137, 71.524918 ]);
-				break;
+		// 	case 'peshawar':
+		// 		setCity(city);
+		// 		setLatLng([ 34.015137, 71.524918 ]);
+		// 		break;
 
-			default:
-				break;
-		}
+		// 	default:
+		// 		break;
+		// }
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		if (!selectedCat) return alert('Please select category.');
+
+		if (latlng.length) {
+			history.push(`/attorney-list?category=${selectedCat}&lat=${latlng[0]}&lng=${latlng[1]}`);
+			return;
+		}
 
 		if (inputEnable) {
 			history.push(`/attorney-list?category=${selectedCat}&city=${city}`);
@@ -88,7 +95,8 @@ export default function SearchLawyer() {
 					enableInput={(v) => setInputEnable(v)}
 				/>
 				<div style={{ position: 'relative', height: '100%' }}>
-					<Map latlng={latlng} />
+					{/* <Map latlng={latlng} /> */}
+					<MapContainer latlng={latlng} setLatLng={(lat, lng) => setLatLng([lat, lng])} />
 				</div>
 				<Button type="submit">Search</Button>
 			</Form>

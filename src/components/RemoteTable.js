@@ -140,7 +140,7 @@ const RemoteTable = ({ title, columns, data, url, fetchData, actions, addNew }) 
 									)}
 								</div>
 							</div>
-							<Table responsive striped>
+							<Table responsive striped bordered>
 								<thead>
 									<tr className="text-capitalize">
 										{columns.map((col) => <th key={col.field}>{col.name}</th>)}

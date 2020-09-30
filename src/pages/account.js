@@ -5,6 +5,7 @@ import axios from '../axios.config';
 import { toast } from 'react-toastify';
 import MultiSelect from 'react-multi-select-component';
 import RemoteTable from '../components/RemoteTable';
+import MapContainer  from '../components/common/Map/MapContainer';
 
 const columns = [
 	{
@@ -37,6 +38,7 @@ export default function Account() {
 	const [ bookings, setBookings ] = React.useState([]);
 	const [ categories, setCategories ] = React.useState([]);
 	const [ selectedCategories, setSelectedCategories ] = React.useState([]);
+	const [ latlng, setLatLng ] = React.useState([ 0, 0 ]);
 	const [ success, setSuccess ] = React.useState(false);
 
 	React.useEffect(() => {
@@ -163,34 +165,10 @@ export default function Account() {
 			case 1:
 				data = {
 					...generalInfo,
-					userId: user._id
+					userId: user._id,
+					lat: latlng[0],
+					lng: latlng[1]
 				};
-
-				switch (generalInfo.city) {
-					case 'sialkot':
-						data.lat = 32.534657;
-						data.lng = 74.58457;
-						break;
-					case 'gujranwala':
-						data.lat = 32.187691;
-						data.lng = 74.19445;
-						break;
-					case 'lahore':
-						data.lat = 31.52037;
-						data.lng = 74.358749;
-						break;
-					case 'karachi':
-						data.lat = 24.860735;
-						data.lng = 67.001137;
-						break;
-					case 'peshawar':
-						data.lat = 34.015137;
-						data.lng = 71.524918;
-						break;
-
-					default:
-						break;
-				}
 
 				axios
 					.put('/home/add_genralInformation', data)
@@ -409,6 +387,9 @@ export default function Account() {
 									value={generalInfo.postalcode}
 									onChange={(e) => inputChangeHandler(1, e)}
 								/>
+								<div>
+									<MapContainer setLatLng={(lat, lng) => setLatLng([lat, lng])} />
+								</div>
 								<Button onClick={() => handleSave(1)}>Save</Button>
 							</div>
 						)}

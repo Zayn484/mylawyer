@@ -12,19 +12,12 @@ export default function Footer() {
 								<h3 className="footer-logo">
 									<strong className="text-danger">LAWYER DIRECTORY</strong>
 								</h3>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquet, massa ac
-									ornare feugiat, nunc dui auctor ipsum, sed posuere eros sapien id quam.{' '}
-								</p>
 								<ul className="footer-contact">
 									<li>
-										<i className="fa fa-phone" /> +1 1234 456789
+										<i className="fa fa-phone" /> +1 1234 666777
 									</li>
 									<li>
-										<i className="fa fa-envelope" /> info@companyname.com
-									</li>
-									<li>
-										<i className="fa fa-fax" /> +1 123 123456
+										<i className="fa fa-envelope" /> info@lawyerdirectory.com
 									</li>
 								</ul>
 							</div>
